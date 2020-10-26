@@ -5,9 +5,9 @@ import { seedColors } from './model/seedColors';
 
 function App() {
   return (
-    <div className="App">
-      <Palette {...seedColors[0]} />
-    </div>
+    // <div className="App">
+    <Palette {...seedColors[0]} />
+    // </div>
   );
 }
 
