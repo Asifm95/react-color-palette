@@ -47,6 +47,7 @@
   },
   "devDependencies": {
     "@types/chroma-js": "^2.1.0",
-    "@types/react-copy-to-clipboard": "^4.3.0"
+    "@types/react-copy-to-clipboard": "^4.3.0",
+    "@types/react-router-dom": "^5.1.6"
   }
 }
