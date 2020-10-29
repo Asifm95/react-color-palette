@@ -1,8 +1,9 @@
 import React from 'react';
-// import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
+import Select from '@material-ui/core/Select';
 import Slider from '@material-ui/core/Slider';
 import './NavBar.css';
+import MenuItem from '@material-ui/core/MenuItem';
 
 const PrettoSlider = withStyles({
   root: {
@@ -36,8 +37,14 @@ const PrettoSlider = withStyles({
 
 const NavBar: React.FC<{
   level: number;
+  format: string;
   sliderChange: (event: object, value: number | number[]) => false | void;
-}> = ({ level, sliderChange }) => {
+  formatChange: (
+    event: React.ChangeEvent<{
+      value: unknown;
+    }>
+  ) => void;
+}> = ({ level, sliderChange, format, formatChange }) => {
   return (
     <header className="Navbar-container">
       <div className="Navbar-logo">
@@ -57,6 +64,12 @@ const NavBar: React.FC<{
             onChange={sliderChange}
           />
         </div>
+      </div>
+      <div className="Select-container">
+        <Select id="format-select" value={format} onChange={formatChange}>
+          <MenuItem value={'hex'}>HEX - #ffff</MenuItem>
+          <MenuItem value={'rgb'}>RGB - rgb(255,255,255)</MenuItem>
+        </Select>
       </div>
     </header>
   );
