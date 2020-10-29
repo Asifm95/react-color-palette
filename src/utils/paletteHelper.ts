@@ -43,3 +43,6 @@ const getRange = (hexColor: string) => [
 const getScale = (hexColor: string, numberOfColors: number) =>
   chroma.scale(getRange(hexColor)).mode('lab').colors(numberOfColors);
 export default generatePalette;
+
+export const findPalette = (seedColors: PalleteType[], id: string) =>
+  seedColors.find((color) => color.id === id);
