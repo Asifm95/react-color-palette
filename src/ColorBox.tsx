@@ -3,7 +3,12 @@ import { GeneratedColor } from './model/interface';
 import './ColorBox.css';
 import CopyToClipboard from 'react-copy-to-clipboard';
 
-const ColorBox: React.FC<GeneratedColor> = ({ name, hex, id }) => {
+type ColorBoxType = {
+  color: GeneratedColor;
+  format: string;
+};
+
+const ColorBox: React.FC<ColorBoxType> = ({ color, format }) => {
   const [copied, setCopied] = useState(false);
 
   const onCopyToClipBoard = (text: string, result: boolean) => {
@@ -11,19 +16,19 @@ const ColorBox: React.FC<GeneratedColor> = ({ name, hex, id }) => {
     setTimeout(() => setCopied(false), 1500);
   };
   return (
-    <CopyToClipboard text={hex} onCopy={onCopyToClipBoard}>
-      <div style={{ background: hex }} className="Colorbox">
+    <CopyToClipboard text={color.hex} onCopy={onCopyToClipBoard}>
+      <div style={{ background: color[format] }} className="Colorbox">
         <div
-          style={{ background: hex }}
+          style={{ background: color[format] }}
           className={`Copy-overlay ${copied && 'show'}`}
         />
         <div className={`Copy-overlay-text ${copied && 'show'}`}>
           <h1>copied!!</h1>
-          <p>{hex}</p>
+          <p>{color[format]}</p>
         </div>
         <div className="Copy-container">
           <div className="Box-content">
-            <span>{name}</span>
+            <span>{color.name}</span>
           </div>
           <button className="Copy-button">copy</button>
         </div>

@@ -17,4 +17,5 @@ export interface GeneratedColor extends Omit<Color, 'color'> {
   id: string;
   hex: string;
   rgb: string;
+  [T: string]: string;
 }
