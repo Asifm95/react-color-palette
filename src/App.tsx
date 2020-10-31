@@ -1,14 +1,15 @@
 import React from 'react';
 import './App.css';
 import Palette from './Palette';
-import { seedColors } from './model/seedColors';
-import generatePalette from './utils/colorGenerator';
+import { Switch, Route } from 'react-router-dom';
+import PaletteList from './PaletteList';
 
 function App() {
   return (
-    // <div className="App">
-    <Palette {...generatePalette(seedColors[0])} />
-    // </div>
+    <Switch>
+      <Route exact path="/" component={PaletteList} />
+      <Route exact path="/palette/:id" component={Palette} />
+    </Switch>
   );
 }
 
