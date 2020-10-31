@@ -1,39 +1,8 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
 import Select from '@material-ui/core/Select';
-import Slider from '@material-ui/core/Slider';
-import './NavBar.css';
 import MenuItem from '@material-ui/core/MenuItem';
-
-const PrettoSlider = withStyles({
-  root: {
-    color: '#cecece',
-    height: 8,
-  },
-  thumb: {
-    height: 24,
-    width: 24,
-    backgroundColor: '#52af77',
-    border: '2px solid #52af77',
-    marginTop: -8,
-    marginLeft: -12,
-    '&:focus, &:hover, &$active': {
-      boxShadow: 'inherit',
-    },
-  },
-  active: {},
-  valueLabel: {
-    left: 'calc(-50% + 4px)',
-  },
-  track: {
-    height: 8,
-    borderRadius: 4,
-  },
-  rail: {
-    height: 8,
-    borderRadius: 4,
-  },
-})(Slider);
+import { Link } from 'react-router-dom';
+import useStyles, { PrettoSlider } from '../styles/NavBarStyles';
 
 const NavBar: React.FC<{
   level: number;
@@ -45,14 +14,15 @@ const NavBar: React.FC<{
     }>
   ) => void;
 }> = ({ level, sliderChange, format, formatChange }) => {
+  const classes = useStyles();
   return (
-    <header className="Navbar-container">
-      <div className="Navbar-logo">
-        <a href="#">ReactColorPicker</a>
+    <header className={classes.root}>
+      <div className={classes.logo}>
+        <Link to="/">ReactColorPicker</Link>
       </div>
-      <div className="Slider-container">
+      <div className={classes.sliderContainer}>
         <span id="discrete-slider">Level: {level}</span>
-        <div className="Palette-slider">
+        <div className={classes.slider}>
           <PrettoSlider
             defaultValue={500}
             aria-labelledby="discrete-slider"
@@ -65,7 +35,7 @@ const NavBar: React.FC<{
           />
         </div>
       </div>
-      <div className="Select-container">
+      <div className={classes.select}>
         <Select id="format-select" value={format} onChange={formatChange}>
           <MenuItem value={'hex'}>HEX - #ffff</MenuItem>
           <MenuItem value={'rgb'}>RGB - rgb(255,255,255)</MenuItem>
