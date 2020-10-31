@@ -8,6 +8,7 @@ import generatePalette, { findPalette } from '../utils/paletteHelper';
 import SnackBar from '../components/SnackBar';
 import PaletteFooter from '../components/PaletteFooter';
 import useStyles from '../styles/PaletteStyles';
+import useSnackBar from '../hooks/useSnackBar';
 type TParams = { id: string };
 
 const Palette: React.FC<RouteComponentProps<TParams>> = ({
@@ -23,21 +24,14 @@ const Palette: React.FC<RouteComponentProps<TParams>> = ({
   const onSliderChange = (event: object, value: number | number[]) =>
     typeof value === 'number' && setLevel(value);
 
-  const [format, setFormat] = React.useState('hex');
+  const [format, setFormat] = useState('hex');
   const onFormatChange = (event: React.ChangeEvent<{ value: unknown }>) => {
     setFormat(event.target.value as string);
     setTimeout(() => setOpen(true));
   };
 
-  const [open, setOpen] = useState(false);
-  const handleClose = (
-    event: React.SyntheticEvent | React.MouseEvent,
-    reason?: string
-  ) => {
-    // if (reason === 'clickaway') {
-    // }
-    setOpen(false);
-  };
+  const [open, setOpen, handleClose] = useSnackBar(false);
+
   const colorBoxes =
     genPalette &&
     genPalette.colors[level].map((color, i) => (
