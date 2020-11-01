@@ -35,7 +35,13 @@ const Palette: React.FC<RouteComponentProps<TParams>> = ({
   const colorBoxes =
     genPalette &&
     genPalette.colors[level].map((color, i) => (
-      <ColorBox key={genPalette?.id} format={format} color={color} />
+      <ColorBox
+        key={color.id}
+        paletteId={genPalette?.id as string}
+        format={format}
+        color={color}
+        singleMode={false}
+      />
     ));
   return (
     <>
