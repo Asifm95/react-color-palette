@@ -1,22 +1,31 @@
 import React, { useState } from 'react';
 import { GeneratedColor } from '../model/interface';
 import useStyles from '../styles/ColorBoxStyles';
-// import './ColorBox.css';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import classnames from 'classnames';
+import { Link } from 'react-router-dom';
 
-type ColorBoxType = {
+export type ColorBoxType = {
+  paletteId: string;
   color: GeneratedColor;
   format: string;
+  singleMode: boolean;
 };
 
-const ColorBox: React.FC<ColorBoxType> = ({ color, format }) => {
-  const classes = useStyles();
+const ColorBox: React.FC<ColorBoxType> = (props) => {
+  const classes = useStyles(props);
+  const { paletteId, color, format, singleMode = false } = props;
   const [copied, setCopied] = useState(false);
 
   const onCopyToClipBoard = (text: string, result: boolean) => {
     setCopied(result);
     setTimeout(() => setCopied(false), 1500);
+  };
+
+  const moreClickHandler = (
+    e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
+  ) => {
+    e.stopPropagation();
   };
 
   const copyOverlay = (
@@ -44,7 +53,12 @@ const ColorBox: React.FC<ColorBoxType> = ({ color, format }) => {
         <div>
           <span className={classes.boxContent}>{color.name}</span>
           <button className={classes.copyButton}>copy</button>
-          <div className={classes.moreButton}>more</div>
+          <Link
+            to={`/palette/${paletteId}/${color.id}`}
+            onClick={moreClickHandler}
+          >
+            {!singleMode && <div className={classes.moreButton}>more</div>}
+          </Link>
         </div>
       </div>
     </CopyToClipboard>
