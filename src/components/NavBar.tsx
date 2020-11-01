@@ -5,10 +5,10 @@ import { Link } from 'react-router-dom';
 import useStyles, { PrettoSlider } from '../styles/NavBarStyles';
 
 const NavBar: React.FC<{
-  level: number;
+  level?: number;
   format: string;
-  sliderChange: (event: object, value: number | number[]) => false | void;
-  formatChange: (
+  sliderChange?: (event: object, value: number | number[]) => false | void;
+  formatChange?: (
     event: React.ChangeEvent<{
       value: unknown;
     }>
@@ -20,21 +20,23 @@ const NavBar: React.FC<{
       <div className={classes.logo}>
         <Link to="/">ReactColorPicker</Link>
       </div>
-      <div className={classes.sliderContainer}>
-        <span id="discrete-slider">Level: {level}</span>
-        <div className={classes.slider}>
-          <PrettoSlider
-            defaultValue={500}
-            aria-labelledby="discrete-slider"
-            valueLabelDisplay="off"
-            step={100}
-            min={100}
-            max={900}
-            track={false}
-            onChange={sliderChange}
-          />
+      {level && (
+        <div className={classes.sliderContainer}>
+          <span id="discrete-slider">Level: {level}</span>
+          <div className={classes.slider}>
+            <PrettoSlider
+              defaultValue={500}
+              aria-labelledby="discrete-slider"
+              valueLabelDisplay="off"
+              step={100}
+              min={100}
+              max={900}
+              track={false}
+              onChange={sliderChange}
+            />
+          </div>
         </div>
-      </div>
+      )}
       <div className={classes.select}>
         <Select id="format-select" value={format} onChange={formatChange}>
           <MenuItem value={'hex'}>HEX - #ffff</MenuItem>
