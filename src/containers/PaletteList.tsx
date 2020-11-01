@@ -1,6 +1,6 @@
 import Button from '@material-ui/core/Button';
 import React from 'react';
-import { Link, RouteComponentProps } from 'react-router-dom';
+import { RouteComponentProps } from 'react-router-dom';
 import MiniPalette from '../components/MiniPalette';
 import { seedColors } from '../model/seedColors';
 import useStyles from '../styles/PaletteListStyles';

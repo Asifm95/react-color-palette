@@ -11,8 +11,12 @@ const MiniPalette: React.FC<
   return (
     <div className={classes.root}>
       <div className={classes.colors} onClick={handleClick}>
-        {colors.map((c) => (
-          <div style={{ background: c.color }} className={classes.box}></div>
+        {colors.map((c, i) => (
+          <div
+            key={i}
+            style={{ background: c.color }}
+            className={classes.box}
+          ></div>
         ))}
       </div>
       <div className={classes.title}>
