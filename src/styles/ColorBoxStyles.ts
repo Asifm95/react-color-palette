@@ -1,9 +1,11 @@
-import { makeStyles } from '@material-ui/core/styles';
+import { Theme, makeStyles } from '@material-ui/core/styles';
+import { ColorBoxType } from '../components/ColorBox';
+import chroma from 'chroma-js';
 
-export default makeStyles({
+export default makeStyles<Theme, ColorBoxType>({
   root: {
     width: '20%',
-    height: '25%',
+    height: (props) => (props.singleMode ? '50%' : '25%'),
     position: 'relative',
     textTransform: 'uppercase',
     '&:hover button': {
@@ -36,7 +38,8 @@ export default makeStyles({
     alignItems: 'center',
     flexDirection: 'column',
     fontSize: '3rem',
-    color: 'white',
+    color: ({ color, format }) =>
+      chroma(color[format]).luminance() >= 0.5 ? 'black' : 'white',
     transform: 'scale(0)',
     transition: 'transform 0.2s ease-in-out',
     transitionDelay: '0.2s',
@@ -66,7 +69,8 @@ export default makeStyles({
     padding: '0.83em',
     fontWeight: 500,
     letterSpacing: 1,
-    color: 'black',
+    color: ({ color, format }) =>
+      chroma(color[format]).luminance() >= 0.5 ? 'black' : 'white',
   },
   copyButton: {
     position: 'absolute',
@@ -80,7 +84,8 @@ export default makeStyles({
     border: 'none',
     outline: 'none',
     background: 'rgba(255, 255, 255, 0.3)',
-    color: 'white',
+    color: ({ color, format }) =>
+      chroma(color[format]).luminance() >= 0.5 ? 'black' : 'white',
     textTransform: 'uppercase',
     opacity: 0,
     cursor: 'pointer',
@@ -94,7 +99,8 @@ export default makeStyles({
     height: '2.5em',
     background: 'rgba(255, 255, 255, 0.3)',
     letterSpacing: 0.3,
-    color: 'white',
+    color: ({ color, format }) =>
+      chroma(color[format]).luminance() >= 0.5 ? 'black' : 'white',
     textAlign: 'center',
     lineHeight: '2.5em',
   },
