@@ -1,6 +1,6 @@
 import Button from '@material-ui/core/Button';
 import React from 'react';
-import { RouteComponentProps } from 'react-router-dom';
+import { Link, RouteComponentProps } from 'react-router-dom';
 import MiniPalette from '../components/MiniPalette';
 import { seedColors } from '../model/seedColors';
 import useStyles from '../styles/PaletteListStyles';
@@ -19,11 +19,16 @@ const PaletteList: React.FC<RouteComponentProps<{}>> = ({ history }) => {
       <div className={classes.container}>
         <nav className={classes.nav}>
           <h1 className={classes.heading}>React Colors</h1>
-          {/* <Link to="/palette/new"> */}
-          <Button variant="outlined" color="default" startIcon={<AddIcon />}>
+          <Button
+            variant="outlined"
+            color="default"
+            startIcon={<AddIcon />}
+            component={Link}
+            to="/palette/new"
+            style={{ color: 'black' }}
+          >
             new palette
           </Button>
-          {/* </Link> */}
         </nav>
         <div className={classes.palette}>{list}</div>
       </div>

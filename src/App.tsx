@@ -4,11 +4,13 @@ import Palette from './containers/Palette';
 import { Switch, Route } from 'react-router-dom';
 import PaletteList from './containers/PaletteList';
 import SingleColorPalette from './containers/SingleColorPalette';
+import NewPaletteForm from './containers/NewPaletteForm';
 
 function App() {
   return (
     <Switch>
       <Route exact path="/" component={PaletteList} />
+      <Route exact path="/palette/new" component={NewPaletteForm} />
       <Route exact path="/palette/:id" component={Palette} />
       <Route
         exact
