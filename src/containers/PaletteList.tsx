@@ -31,6 +31,7 @@ const PaletteList: React.FC<RouteComponentProps<{}>> = ({ history }) => {
           </Button>
         </nav>
         <div className={classes.palette}>{list}</div>
+        <div className={classes.spacer}></div>
       </div>
     </div>
   );
